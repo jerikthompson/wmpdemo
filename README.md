@@ -8,9 +8,9 @@
 .env file example
 
 LOGIN_URL=https://test.salesforce.com  
-USERNAME=<<your Salesforce user name>>  
-PASSWORD=<<your Salesforce password>>  
-SECURITY_TOKEN=<<your Salesforce security token>>  
+USERNAME=your Salesforce user name  
+PASSWORD=your Salesforce password  
+SECURITY_TOKEN=your Salesforce security token  
   
   
 
