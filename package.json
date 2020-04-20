@@ -9,7 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "azure": "^2.3.1-preview",
     "dotenv": "^8.2.0",
-    "jsforce": "^1.9.3"
+    "jsforce": "^1.9.3",
+    "lodash": "^4.17.15"
   }
 }
