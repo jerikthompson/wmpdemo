@@ -3,7 +3,7 @@
 1. clone the repository
 2. create ".env" file (see below)
 3. run "npm install"
-4. run "node dump.js"
+4. run "node app.js"
 
 .env file example
 
