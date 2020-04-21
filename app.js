@@ -29,12 +29,17 @@ const dataMappings = require('./DataMappings');
     
     let tables = [];
     for (const item of itemList) {
-        if (!item.processSalesforce) return;
-        const table = await salesforce.getTable(item.salesforceTable);
-        tables.push(table);
+        console.log(`Processing ${item.salesforceTable}`);
 
-        if (!item.processAzure) return;
-        await asbController.asbTableProcessor.processTable(table, item.mapping);    
+        let table = null;
+        if (item.processSalesforce) {
+            table = await salesforce.getTable(item.salesforceTable);
+            tables.push(table);
+
+            if (item.processAzure) {
+                await asbController.asbTableProcessor.processTable(table, item.mapping);    
+            }
+        }
     }
 
     console.log(`${tables.length} tables processed`);    
