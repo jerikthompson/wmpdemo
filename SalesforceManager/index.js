@@ -4,7 +4,7 @@ const jsforce = require('jsforce');
 
 const conn = new jsforce.Connection({ loginUrl: process.env.LOGIN_URL });
 
-async function getTable(sobjectName) {
+const getTable = async (sobjectName) => {
     console.log(`logging in ${process.env.LOGIN_URL} ${process.env.SFUSERNAME}...`);
     await conn.login(process.env.SFUSERNAME, `${process.env.SFPASSWORD}${process.env.SFSECURITY_TOKEN}`);
 

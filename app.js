@@ -4,27 +4,27 @@ const salesforce = require('./SalesforceManager');
 const asbController = require('./AsbController');
 const dataMappings = require('./DataMappings');
 
-(async () =>{
+(async () => {
     const itemList = [{
         salesforceTable: "Account",
         mapping: dataMappings.account.mapping,
         processSalesforce: true,
         processAzure: true
-    },{
+    }, {
         salesforceTable: "Contact",
         mapping: dataMappings.contact.mapping,
         processSalesforce: true,
         processAzure: true
-    },{
+    }, {
         salesforceTable: "Opportunity",
-        mapping: dataMappings.account.mapping,
+        mapping: dataMappings.opportunity.mapping,
         processSalesforce: true,
-        processAzure: true
-    },{
+        processAzure: false
+    }, {
         salesforceTable: "Product2",
-        mapping: dataMappings.account.mapping,
+        mapping: dataMappings.product.mapping,
         processSalesforce: true,
-        processAzure: true
+        processAzure: false
     }];
     
     let tables = [];

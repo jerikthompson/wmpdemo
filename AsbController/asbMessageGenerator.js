@@ -1,12 +1,13 @@
 const _ = require('lodash');
 
-const createMessage = function(data, mapping, createOrUpdate){
+const createMessage = (data, mapping, createOrUpdate) => {
   let bodyValues = [];
-  _.forOwn(mapping.fields, function(value, propertyName) { 
+  _.forOwn(mapping.fields, (value, propertyName) => { 
     if (value) {
       bodyValues.push({"OldValue":null,"CurrentValue": data[`${value}`],"AttributeName":propertyName});
     }
   });
+  
   return {
     body: JSON.stringify({
         "$type": "Ryan.Bus.Salesforce.Bridge.Models.SalesforceEventEnvelope, Ryan.Bus.Salesforce.Bridge",
