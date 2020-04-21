@@ -1,8 +1,10 @@
+const _ = require('lodash');
+
 const salesforce = require('./SalesforceManager');
 const asbController = require('./AsbController');
 const dataMappings = require('./DataMappings');
 
-(async function(){
+(async () =>{
     const itemList = [{
         salesforceTable: "Account",
         mapping: dataMappings.account.mapping,
@@ -25,13 +27,15 @@ const dataMappings = require('./DataMappings');
         processAzure: true
     }];
     
-    await Promise.all(itemList.map(function(item){
+    let tables = [];
+    for (const item of itemList) {
         if (!item.processSalesforce) return;
         const table = await salesforce.getTable(item.salesforceTable);
+        tables.push(table);
 
         if (!item.processAzure) return;
-        asbController.asbTableProcessor.processTable(table, item.mapping);    
-    }));
+        await asbController.asbTableProcessor.processTable(table, item.mapping);    
+    }
 
-    console.log('exiting');    
+    console.log(`${tables.length} tables processed`);    
 })();
