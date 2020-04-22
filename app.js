@@ -9,12 +9,12 @@ const dataMappings = require('./DataMappings');
         salesforceTable: "Account",
         mapping: dataMappings.account.mapping,
         processSalesforce: true,
-        processAzure: true
+        processAzure: false
     }, {
         salesforceTable: "Contact",
         mapping: dataMappings.contact.mapping,
         processSalesforce: true,
-        processAzure: true
+        processAzure: false
     }, {
         salesforceTable: "Opportunity",
         mapping: dataMappings.opportunity.mapping,
