@@ -6,15 +6,20 @@ const dataMappings = require('./DataMappings');
 
 (async () => {
     const itemList = [{
+        salesforceTable: "User",
+        mapping: dataMappings.user.mapping,
+        processSalesforce: true,
+        processAzure: false
+    }, {
         salesforceTable: "Account",
         mapping: dataMappings.account.mapping,
         processSalesforce: true,
-        processAzure: false
+        processAzure: true
     }, {
         salesforceTable: "Contact",
         mapping: dataMappings.contact.mapping,
         processSalesforce: true,
-        processAzure: false
+        processAzure: true
     }, {
         salesforceTable: "Opportunity",
         mapping: dataMappings.opportunity.mapping,
@@ -27,6 +32,12 @@ const dataMappings = require('./DataMappings');
         processAzure: false
     }];
     
+    let tableNames = await salesforce.getCustomTableList();
+    for(const tableName of tableNames){
+        console.log($`Found custom table named: ${tableName}`);
+    }
+    return ;
+
     let tables = [];
     for (const item of itemList) {
         console.log(`Processing ${item.salesforceTable}`);

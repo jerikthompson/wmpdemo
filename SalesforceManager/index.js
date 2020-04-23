@@ -95,6 +95,27 @@ const getTableBatch = async (sobjectName) => {
     return finalResults;
 };
 
+const getCustomTableList = async() => {
+    console.log(`logging in ${process.env.LOGIN_URL} ${process.env.SFUSERNAME}...`);
+    await conn.login(process.env.SFUSERNAME, `${process.env.SFPASSWORD}${process.env.SFSECURITY_TOKEN}`);
+
+    let tableNames = [];
+
+    var types = [{type: 'CustomObject', folder: null}];
+    conn.metadata.list(types, '47.0', (err, metadata) => {
+        if (err) { return console.error(" err ", err); }
+
+        metadata.sort((a, b) => (a.fullName > b.fullName) ? 1 : -1);
+
+        // Populate dropdown with list of objects
+        metadata.forEach(obj => {
+            tableNames.push(obj.fullName);
+        });
+    });
+    return tableNames;
+};
+
 module.exports = {
-    getTable
+    getTable,
+    getCustomTableList
 }
